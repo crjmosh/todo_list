@@ -1,7 +1,11 @@
 class TodosController < ApplicationController
   def index
   	@todos = Todo.order("priority DESC, updated_at DESC").all
-  	@percent = ((Todo.where(complete: true).count.to_f / Todo.count.to_f) * 100).to_i
+  	if Todo.count > 0
+  		@percent = ((Todo.where(complete: true).count.to_f / Todo.count.to_f) * 100).to_i
+  	else
+  		@percent = 0
+  	end
   end
 
   def show
