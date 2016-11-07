@@ -1,0 +1,56 @@
+<h1>
+	Todo List - 
+	<%= @percent %>% Complete
+</h1>
+<hr>
+
+<h3>Incomplete Items:</h3>
+
+<p>
+Color Legend: 
+<span style="color:red">High Priority</span> - 
+<span style="color:green">Normal Priority</span> - 
+<span style="color:blue">Low Priority</span>
+</p>
+
+<ol>
+	<% @todos.each do |todo| %>
+		<% if todo.complete == false %>
+		<li>
+			<% case todo.priority %>
+			<% when 1 %>
+			<span style="color:blue"><%= todo.item %></span> -
+			<% when 2 %>
+			<span style="color:green"><%= todo.item %></span> -
+			<% when 3 %>
+			<span style="color:red"><%= todo.item %></span> -
+			<% end %>
+			<%= link_to 'See Details', todo_path(todo) %> -
+			<%= link_to 'Edit', edit_todo_path(todo) %> -
+			<%= link_to 'Delete', todo_path(todo),
+				method: :delete,
+				data: {confirm: 'Really delete this item?'} %>
+		</li>
+		<% end %>
+	<% end %>
+</ol>
+
+<%= link_to 'Add Item', new_todo_path %>
+
+<hr>
+
+<h3>Completed Items:</h3>
+<ol>
+	<% @todos.each do |todo| %>
+		<% if todo.complete == true %>
+		<li>
+			<strike><%= todo.item %></strike> -
+			<%= link_to 'See Details', todo_path(todo) %> -
+			<%= link_to 'Edit', edit_todo_path(todo) %> -
+			<%= link_to 'Delete', todo_path(todo),
+				method: :delete,
+				data: {confirm: 'Really delete this item?'} %>
+		</li>
+		<% end %>
+	<% end %>
+</ol>

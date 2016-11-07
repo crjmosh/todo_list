@@ -1,0 +1,17 @@
+<%= form_for @todo do |f| %>
+	<%= f.label :item %>:
+	<%= f.text_field :item %>
+	<br>
+	<%= f.label :details %>:
+	<%= f.text_area :details %>
+	<br>
+	<%= f.label :priority %>:
+	<%= f.radio_button :priority, 1 %> Low
+	<%= f.radio_button :priority, 2 %> Normal
+	<%= f.radio_button :priority, 3 %> High
+	<br>
+	<%= f.label :complete %>
+	<%= f.check_box :complete %>
+	<br>
+	<%= f.submit 'Submit' %>
+<% end %>

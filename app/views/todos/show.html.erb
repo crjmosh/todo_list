@@ -1,0 +1,32 @@
+<h1>Item Details</h1>
+<hr>
+
+<p>
+	Item: 
+	<i> <%= @todo.item %> </i>
+</p>
+
+<p>
+	Priority: 
+	<% case @todo.priority %>
+	<% when 1 %>
+		<i>Low</i>
+	<% when 2 %>
+		<i>Normal</i>
+	<% when 3 %>
+		<i>High</i>
+	<% end %>
+</p>
+
+<p>
+	Complete? 
+	<%= @todo.complete ? 'Yes' : 'No' %>
+</p>
+
+<p>Details:</p>
+<blockquote>
+	<i><%= @todo.details %></i>
+</blockquote>
+
+<%= link_to 'Back to List', todos_path %>
+
