@@ -3,6 +3,8 @@ class TodosController < ApplicationController
   	@todos = Todo.order("priority DESC, updated_at DESC").all
   	if Todo.count > 0
   		@percent = ((Todo.where(complete: true).count.to_f / Todo.count.to_f) * 100).to_i
+      @incomplete = Todo.where(complete: false).count
+      @complete = Todo.where(complete: true).count
   	else
   		@percent = 0
   	end
